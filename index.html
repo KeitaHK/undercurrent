@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOLD magazine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;
+      --text:#f0ede6;--muted:#888;--accent:#e8c547;
+      --lifestyle:#e87c5a;--tech:#5ab4e8;--sports:#5ae89a;
+      --serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;
+    }
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid #2a2a2a;position:sticky;top:0;background:rgba(15,15,15,0.95);backdrop-filter:blur(8px);z-index:100}
+    .logo{font-family:var(--serif);font-size:1.4rem;color:var(--accent);letter-spacing:0.1em}
+    .logo span{color:var(--text);font-weight:400}
+    .nav-cats{display:flex;gap:1.5rem}
+    .nav-cats button{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:0.85rem;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent;transition:all .2s}
+    .nav-cats button.active,.nav-cats button:hover{color:var(--text);border-bottom-color:var(--accent)}
+    .hero{padding:3rem 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+    .hero-main{background:var(--surface);padding:2rem;position:relative;cursor:pointer;overflow:hidden}
+    .hero-main::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+    .hero-main:hover{background:var(--surface2)}
+    .cat-badge{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;margin-bottom:1rem}
+    .cat-lifestyle{background:rgba(232,124,90,0.15);color:var(--lifestyle)}
+    .cat-tech{background:rgba(90,180,232,0.15);color:var(--tech)}
+    .cat-sports{background:rgba(90,232,154,0.15);color:var(--sports)}
+    .hero-main h2{font-family:var(--serif);font-size:1.8rem;line-height:1.4;margin-bottom:0.75rem}
+    .hero-main p{color:var(--muted);font-size:0.9rem;line-height:1.7}
+    .hero-main .meta{margin-top:1.25rem;font-size:0.75rem;color:var(--muted);display:flex;gap:1rem}
+    .hero-sub{display:flex;flex-direction:column;gap:1rem}
+    .sub-card{background:var(--surface);padding:1.25rem;cursor:pointer;display:flex;gap:1rem;align-items:flex-start}
+    .sub-card:hover{background:var(--surface2)}
+    .sub-card h3{font-family:var(--serif);font-size:1rem;line-height:1.5;flex:1}
+    .sub-num{font-family:var(--serif);font-size:2rem;color:var(--surface2);font-weight:700;line-height:1;min-width:2.5rem}
+    .section{max-width:1100px;margin:0 auto;padding:2rem}
+    .section-hd{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+    .section-hd h2{font-family:var(--serif);font-size:1.1rem;letter-spacing:0.05em}
+    .section-hd::after{content:'';flex:1;height:1px;background:#2a2a2a}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a2a2a}
+    .card{background:var(--bg);padding:1.5rem;cursor:pointer;transition:background .2s}
+    .card:hover{background:var(--surface)}
+    .card h3{font-family:var(--serif);font-size:1rem;line-height:1.6;margin:0.5rem 0 0.75rem}
+    .card p{color:var(--muted);font-size:0.8rem;line-height:1.6}
+    .card .meta{margin-top:1rem;font-size:0.72rem;color:var(--muted);display:flex;justify-content:space-between}
+    footer{text-align:center;padding:3rem 2rem;border-top:1px solid #2a2a2a;color:var(--muted);font-size:0.8rem;font-family:var(--serif);letter-spacing:0.1em}
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      nav{flex-wrap:wrap;gap:0.75rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FOLD<span> magazine</span></div>
+  <div class="nav-cats">
+    <button class="active" onclick="filterCat('all',this)">ALL</button>
+    <button onclick="filterCat('lifestyle',this)">LIFESTYLE</button>
+    <button onclick="filterCat('tech',this)">TECH · IT</button>
+    <button onclick="filterCat('sports',this)">SPORTS</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-main" id="hero-main"></div>
+  <div class="hero-sub" id="hero-sub"></div>
+</div>
+
+<div class="section">
+  <div class="section-hd"><h2>最新記事</h2></div>
+  <div class="grid" id="articles-grid"></div>
+</div>
+
+<footer>FOLD magazine — すべての記事は編集部が監修しています</footer>
+
+<script src="articles.js"></script>
+<script>
+  let articles = JSON.parse(localStorage.getItem('fold_articles')) || ARTICLES;
+  let currentCat = 'all';
+  const catColors = {lifestyle:'cat-lifestyle',tech:'cat-tech',sports:'cat-sports'};
+  const catLabels = {lifestyle:'LIFESTYLE',tech:'TECH · IT',sports:'SPORTS'};
+
+  function renderHero() {
+    const top = articles[0];
+    if (!top) return;
+    document.getElementById('hero-main').innerHTML = `
+      <span class="cat-badge ${catColors[top.cat]}">${catLabels[top.cat]}</span>
+      <h2>${top.title}</h2>
+      <p>${top.body}</p>
+      <div class="meta"><span>${top.date}</span><span>${top.read} min read</span></div>`;
+    document.getElementById('hero-sub').innerHTML = articles.slice(1,4).map((a,i)=>`
+      <div class="sub-card">
+        <span class="sub-num">0${i+1}</span>
+        <div><span class="cat-badge ${catColors[a.cat]}">${catLabels[a.cat]}</span><h3>${a.title}</h3></div>
+      </div>`).join('');
+  }
+
+  function renderGrid() {
+    const filtered = currentCat==='all' ? articles : articles.filter(a=>a.cat===currentCat);
+    document.getElementById('articles-grid').innerHTML = filtered.map(a=>`
+      <div class="card">
+        <span class="cat-badge ${catColors[a.cat]}">${catLabels[a.cat]}</span>
+        <h3>${a.title}</h3>
+        <p>${a.body}</p>
+        <div class="meta"><span>${a.date}</span><span>${a.read} min</span></div>
+      </div>`).join('');
+  }
+
+  function filterCat(cat, btn) {
+    currentCat = cat;
+    document.querySelectorAll('.nav-cats button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGrid();
+  }
+
+  renderHero();
+  renderGrid();
+</script>
+</body>
+</html>
