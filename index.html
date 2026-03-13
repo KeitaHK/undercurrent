@@ -13,63 +13,57 @@
       --bg:#f5f2ed;--surface:#ffffff;--surface2:#f0ece6;
       --text:#1a1714;--muted:#7a746c;--accent:#c4531a;
       --border:#e0d9d0;
-      --lifestyle:#c4531a;--tech:#1a6bc4;--sports:#1a9c4e;
       --serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;
     }
     body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
-
-    /* NAV */
-    nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(245,242,237,0.95);backdrop-filter:blur(8px);z-index:100}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(245,242,237,0.95);backdrop-filter:blur(8px);z-index:100;flex-wrap:wrap;gap:0.5rem}
     .logo{font-family:var(--serif);font-size:1.5rem;color:var(--text);letter-spacing:0.05em;cursor:pointer}
     .logo span{color:var(--accent)}
-    .nav-cats{display:flex;gap:1.5rem}
-    .nav-cats button{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:0.85rem;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent;transition:all .2s}
+    .nav-cats{display:flex;gap:1rem;flex-wrap:wrap}
+    .nav-cats button{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:0.82rem;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
     .nav-cats button.active,.nav-cats button:hover{color:var(--text);border-bottom-color:var(--accent)}
-
+    .cat-badge{display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;padding:3px 8px;margin-bottom:1rem;border-radius:2px}
     /* LIST VIEW */
     #list-view{}
     .hero{padding:3rem 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
-    .hero-main{background:var(--surface);padding:2rem;position:relative;cursor:pointer;overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s}
+    .hero-main{background:var(--surface);padding:2rem;position:relative;cursor:pointer;border:1px solid var(--border);transition:box-shadow .2s;overflow:hidden}
     .hero-main::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
     .hero-main:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-    .cat-badge{display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;margin-bottom:1rem;border-radius:2px}
-    .cat-lifestyle{background:rgba(196,83,26,0.1);color:var(--lifestyle)}
-    .cat-tech{background:rgba(26,107,196,0.1);color:var(--tech)}
-    .cat-sports{background:rgba(26,156,78,0.1);color:var(--sports)}
-    .hero-main h2{font-family:var(--serif);font-size:1.7rem;line-height:1.4;margin-bottom:0.75rem;color:var(--text)}
+    .hero-img{width:100%;height:200px;object-fit:cover;margin-bottom:1.25rem;display:block}
+    .hero-main h2{font-family:var(--serif);font-size:1.7rem;line-height:1.4;margin-bottom:0.75rem}
     .hero-main p{color:var(--muted);font-size:0.9rem;line-height:1.7}
     .hero-main .meta{margin-top:1.25rem;font-size:0.75rem;color:var(--muted);display:flex;gap:1rem}
     .hero-sub{display:flex;flex-direction:column;gap:1rem}
     .sub-card{background:var(--surface);padding:1.25rem;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;border:1px solid var(--border);transition:box-shadow .2s}
     .sub-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.07)}
-    .sub-card h3{font-family:var(--serif);font-size:1rem;line-height:1.5;flex:1;color:var(--text)}
+    .sub-card h3{font-family:var(--serif);font-size:1rem;line-height:1.5;flex:1}
     .sub-num{font-family:var(--serif);font-size:2rem;color:var(--border);font-weight:700;line-height:1;min-width:2.5rem}
     .section{max-width:1100px;margin:0 auto;padding:2rem}
     .section-hd{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
-    .section-hd h2{font-family:var(--serif);font-size:1.1rem;letter-spacing:0.05em;color:var(--text)}
+    .section-hd h2{font-family:var(--serif);font-size:1.1rem;letter-spacing:0.05em}
     .section-hd::after{content:'';flex:1;height:1px;background:var(--border)}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-    .card{background:var(--surface);padding:1.5rem;cursor:pointer;border:1px solid var(--border);transition:box-shadow .2s}
+    .card{background:var(--surface);cursor:pointer;border:1px solid var(--border);transition:box-shadow .2s;overflow:hidden}
     .card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08)}
-    .card h3{font-family:var(--serif);font-size:1rem;line-height:1.6;margin:0.5rem 0 0.75rem;color:var(--text)}
+    .card-img{width:100%;height:160px;object-fit:cover;display:block}
+    .card-body{padding:1.25rem}
+    .card h3{font-family:var(--serif);font-size:1rem;line-height:1.6;margin:0.5rem 0 0.75rem}
     .card p{color:var(--muted);font-size:0.8rem;line-height:1.6}
     .card .meta{margin-top:1rem;font-size:0.72rem;color:var(--muted);display:flex;justify-content:space-between}
-
     /* ARTICLE VIEW */
     #article-view{display:none;max-width:720px;margin:0 auto;padding:3rem 2rem}
     .article-back{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:0.85rem;cursor:pointer;margin-bottom:2rem;display:flex;align-items:center;gap:6px;padding:0}
     .article-back:hover{color:var(--accent)}
-    .article-cat{margin-bottom:1rem}
-    .article-title{font-family:var(--serif);font-size:2rem;line-height:1.4;margin-bottom:1rem;color:var(--text)}
+    .article-hero-img{width:100%;max-height:400px;object-fit:cover;margin-bottom:2rem;display:block}
+    .article-title{font-family:var(--serif);font-size:2rem;line-height:1.4;margin-bottom:1rem}
     .article-meta{font-size:0.8rem;color:var(--muted);margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem}
-    .article-body{font-family:var(--serif);font-size:1.05rem;line-height:2;color:var(--text)}
+    .article-body{font-family:var(--serif);font-size:1.05rem;line-height:2}
     .article-body p{margin-bottom:1.5rem}
-
+    .article-body h2{font-size:1.2rem;margin:2rem 0 1rem;font-weight:700;font-family:var(--serif)}
     footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem;font-family:var(--serif);letter-spacing:0.1em}
     @media(max-width:768px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
-      nav{flex-wrap:wrap;gap:0.75rem}
       .article-title{font-size:1.5rem}
     }
   </style>
@@ -78,12 +72,7 @@
 
 <nav>
   <div class="logo" onclick="showList()">Under<span>current</span></div>
-  <div class="nav-cats">
-    <button class="active" onclick="filterCat('all',this)">ALL</button>
-    <button onclick="filterCat('lifestyle',this)">LIFESTYLE</button>
-    <button onclick="filterCat('tech',this)">TECH · IT</button>
-    <button onclick="filterCat('sports',this)">SPORTS</button>
-  </div>
+  <div class="nav-cats" id="nav-cats"></div>
 </nav>
 
 <div id="list-view">
@@ -99,7 +88,8 @@
 
 <div id="article-view">
   <button class="article-back" onclick="showList()">← 一覧に戻る</button>
-  <div class="article-cat" id="av-cat"></div>
+  <img id="av-img" class="article-hero-img" style="display:none">
+  <div id="av-cat"></div>
   <h1 class="article-title" id="av-title"></h1>
   <div class="article-meta" id="av-meta"></div>
   <div class="article-body" id="av-body"></div>
@@ -109,15 +99,38 @@
 
 <script src="articles.js"></script>
 <script>
-  let articles = JSON.parse(localStorage.getItem('fold_articles')) || ARTICLES;
+  let articles = JSON.parse(localStorage.getItem('uc_articles')) || ARTICLES;
+  let categories = JSON.parse(localStorage.getItem('uc_categories')) || DEFAULT_CATEGORIES;
   let currentCat = 'all';
-  const catColors = {lifestyle:'cat-lifestyle',tech:'cat-tech',sports:'cat-sports'};
-  const catLabels = {lifestyle:'LIFESTYLE',tech:'TECH · IT',sports:'SPORTS'};
+
+  function getCatStyle(catId) {
+    const cat = categories.find(c => c.id === catId);
+    if (!cat) return {bg:'rgba(120,120,120,0.1)', color:'rgb(120,120,120)', label: catId.toUpperCase()};
+    return {
+      bg: `rgba(${cat.color},0.12)`,
+      color: `rgb(${cat.color})`,
+      label: cat.label
+    };
+  }
+
+  function badgeHTML(catId) {
+    const s = getCatStyle(catId);
+    return `<span class="cat-badge" style="background:${s.bg};color:${s.color}">${s.label}</span>`;
+  }
+
+  function renderNav() {
+    const nav = document.getElementById('nav-cats');
+    nav.innerHTML = `<button class="${currentCat==='all'?'active':''}" onclick="filterCat('all',this)">ALL</button>`
+      + categories.map(c => `<button class="${currentCat===c.id?'active':''}" onclick="filterCat('${c.id}',this)">${c.label}</button>`).join('');
+  }
 
   function openArticle(id) {
     const a = articles.find(x => x.id === id);
     if (!a) return;
-    document.getElementById('av-cat').innerHTML = `<span class="cat-badge ${catColors[a.cat]}">${catLabels[a.cat]}</span>`;
+    const img = document.getElementById('av-img');
+    if (a.image) { img.src = a.image; img.style.display = 'block'; }
+    else { img.style.display = 'none'; }
+    document.getElementById('av-cat').innerHTML = badgeHTML(a.cat);
     document.getElementById('av-title').textContent = a.title;
     document.getElementById('av-meta').innerHTML = `<span>${a.date}</span><span>${a.read} min read</span>`;
     document.getElementById('av-body').innerHTML = a.content || `<p>${a.body}</p>`;
@@ -135,8 +148,10 @@
   function renderHero() {
     const top = articles[0];
     if (!top) return;
+    const imgHTML = top.image ? `<img src="${top.image}" class="hero-img" alt="">` : '';
     document.getElementById('hero-main').innerHTML = `
-      <span class="cat-badge ${catColors[top.cat]}">${catLabels[top.cat]}</span>
+      ${imgHTML}
+      ${badgeHTML(top.cat)}
       <h2>${top.title}</h2>
       <p>${top.body}</p>
       <div class="meta"><span>${top.date}</span><span>${top.read} min read</span></div>`;
@@ -144,28 +159,33 @@
     document.getElementById('hero-sub').innerHTML = articles.slice(1,4).map((a,i) => `
       <div class="sub-card" onclick="openArticle(${a.id})">
         <span class="sub-num">0${i+1}</span>
-        <div><span class="cat-badge ${catColors[a.cat]}">${catLabels[a.cat]}</span><h3>${a.title}</h3></div>
+        <div>${badgeHTML(a.cat)}<h3>${a.title}</h3></div>
       </div>`).join('');
   }
 
   function renderGrid() {
     const filtered = currentCat==='all' ? articles : articles.filter(a=>a.cat===currentCat);
-    document.getElementById('articles-grid').innerHTML = filtered.map(a => `
-      <div class="card" onclick="openArticle(${a.id})">
-        <span class="cat-badge ${catColors[a.cat]}">${catLabels[a.cat]}</span>
-        <h3>${a.title}</h3>
-        <p>${a.body}</p>
-        <div class="meta"><span>${a.date}</span><span>${a.read} min</span></div>
-      </div>`).join('');
+    document.getElementById('articles-grid').innerHTML = filtered.map(a => {
+      const imgHTML = a.image ? `<img src="${a.image}" class="card-img" alt="">` : '';
+      return `<div class="card" onclick="openArticle(${a.id})">
+        ${imgHTML}
+        <div class="card-body">
+          ${badgeHTML(a.cat)}
+          <h3>${a.title}</h3>
+          <p>${a.body}</p>
+          <div class="meta"><span>${a.date}</span><span>${a.read} min</span></div>
+        </div>
+      </div>`;
+    }).join('');
   }
 
   function filterCat(cat, btn) {
     currentCat = cat;
-    document.querySelectorAll('.nav-cats button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
+    renderNav();
     renderGrid();
   }
 
+  renderNav();
   renderHero();
   renderGrid();
 </script>
